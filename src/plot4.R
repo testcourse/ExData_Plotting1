@@ -13,13 +13,19 @@ plot(date_time,data[,3], type='l', xlab="", ylab="Global Active Power");
 
 plot(date_time,data[,5], type='l', xlab="datetime", ylab="Voltage");
 
-plot(date_time,data[,7], type='l',xlab="", ylab="Global Active Power(killowatts)", col="black");
 
-lines(date_time,as.numeric(data[,8]), type='l', col='red');
 
-lines(date_time,as.numeric(data[,9]), type='l', col='blue');
+with(data,plot(date_time,data[,7], type='n',xlab="", ylab="Global Active Power(killowatts)"));
 
-legend("topright", pch=1, seg.len=2, box.lwd = 0,cex = .7, xjust=1, col = c("black","red","blue"),lty=1,legend=c("sub_metering_1","sub_metering_2","sub_metering_3"));
+with(data,lines(date_time,data[,7],type='l'));
+
+with(data,lines(date_time,as.numeric(data[,8]), col='red'));
+
+with(data,lines(date_time,as.numeric(data[,9]), col='blue'));
+
+legend("topright", cex = .7,bty='n', xjust=1, col = c("black","red","blue"),lty=c(1,1,1),legend=c("sub_metering_1","sub_metering_2","sub_metering_3"));
+
+
 
 plot(date_time,data[,4], type='l', xlab="datetime", ylab="Global_reactive_power");
 

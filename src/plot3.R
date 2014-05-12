@@ -7,14 +7,16 @@ data[,1] <- as.Date(data[,1],"%d/%m/%Y");
 
 date_time <- as.POSIXct(strptime(paste(data[,1],data[,2]),format="%Y-%m-%d %H:%M:%S",tz='GMT'));
 
-plot(date_time,data[,7], type='l',xlab="", ylab="Global Active Power(killowatts)", col="black");
+png(filename="plot3.png");
 
-lines(date_time,as.numeric(data[,8]), type='l', col='red');
+with(data, plot(date_time, data$Sub_metering_1, type="n", xlab="", ylab="Energy sub metering"));
 
-lines(date_time,as.numeric(data[,9]), type='l', col='blue');
+with(data, lines(date_time, Sub_metering_1));
 
-legend("topright", pch=1, seg.len=4,col = c("black","red","blue"),lty=1,legend=c("sub_metering_1","sub_metering_2","sub_metering_3"));
+with(data, lines(date_time, Sub_metering_2, col="red"));
 
-dev.copy(png,"plot3.png", width=480, height=480);
+with(data, lines(date_time, Sub_metering_3, col="blue"));
 
-dev.off();
+legend("topright", legend=c("Sub_metering_1", "Sub_metering_2","Sub_metering_3"), col=c("black","red","blue"), lty=c(1,1,1));
+
+dev.off()
